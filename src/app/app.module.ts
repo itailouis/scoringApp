@@ -32,7 +32,7 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     //provider used to create fake backend
-    fakeBackendProvider
+    //fakeBackendProvider
 ],
   bootstrap: [AppComponent]
 })

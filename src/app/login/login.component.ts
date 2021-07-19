@@ -57,9 +57,9 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
 
-          if (data.role == "Admin") {
+          if (data.role == "admin") {
             this.router.navigate(['admin']);
-          } else if (data.role == "User") {
+          } else if (data.role == "user") {
             this.router.navigate(['agent']);
           }
         },

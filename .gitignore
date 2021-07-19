@@ -9,6 +9,9 @@
 
 # dependencies
 /node_modules
+# database file
+
+db.sqlite
 
 # profiling files
 chrome-profiler-events*.json

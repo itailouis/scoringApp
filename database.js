@@ -32,10 +32,19 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             }
         })
 
-        const createItemsTable = "CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, price NUMERIC)";
-        db.run(createItemsTable,(err) => {
+        const createVoicecallsTable = "CREATE TABLE IF NOT EXISTS voicecalls (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, filepath TEXT, user NUMERIC)";
+        db.run(createVoicecallsTable,(err) => {
             if (err) {
-                // Table already created
+                //Table already created
+            } else {
+                
+            }
+        });
+
+        const createScoreLogTable = "CREATE TABLE IF NOT EXISTS scoreLog (id INTEGER PRIMARY KEY AUTOINCREMENT, point NUMERIC,voicecallid NUMERIC,user NUMERIC)";
+        db.run(createScoreLogTable,(err) => {
+            if (err) {
+                //Table already created
             } else {
                 
             }
@@ -44,7 +53,5 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
 
     }
 })
-
-
 module.exports = db
 

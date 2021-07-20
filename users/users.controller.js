@@ -7,6 +7,8 @@ const Role = require('_helpers/role');
 // routes
 router.post('/authenticate', authenticate);     // public route
 router.get('/', authorize(Role.Admin), getAll); // admin only
+router.get('/users', getAll);
+router.post('/add', addnew);
 router.get('/:id', authorize(), getById);       // all authenticated users
 module.exports = router;
 
@@ -18,6 +20,18 @@ function authenticate(req, res, next) {
         })
         //.err(()=>res.status(400).json({ message: 'Username or password is incorrect' }))
         .catch(err => next(err));
+}
+
+function addnew(req, res, next) {
+    userService.addNewUser(req.body)
+        .then(user => {
+            console.log(user);
+            return user ? res.json(user) : res.status(400).json({ message: 'error when adding user' })
+        })
+        .catch(err =>{
+            console.log(err);
+           return  next(err)
+        } );
 }
 
 function getAll(req, res, next) {

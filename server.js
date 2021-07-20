@@ -5,18 +5,30 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const errorHandler = require('_helpers/error-handler');
 
-
-
+/* app.use((req, res) => {
+    console.log(req ); // this is what you want           
+  
+    res.on("finish", () => {
+  
+      console.log(res);
+  
+    });
+  
+  });
+ */
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
-// api routes
+//api routes
 app.use('/users', require('./users/users.controller'));
+app.use('/calls', require('./calls/calls.controller'));
+
 
 // global error handler
 app.use(errorHandler);
+
 
 app.use(express.static('./dist/scoringApp'));
 

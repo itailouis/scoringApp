@@ -19,17 +19,18 @@
     "@angular/platform-browser": "~10.1.4",
     "@angular/platform-browser-dynamic": "~10.1.4",
     "@angular/router": "~10.1.4",
-    "rxjs": "~6.6.0",
-    "tslib": "^2.0.0",
-    "zone.js": "~0.10.2",
     "body-parser": "^1.18.3",
+    "connect-multiparty": "^2.2.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-jwt": "^6.0.0",
     "jsonwebtoken": "^8.4.0",
     "md5": "^2.3.0",
     "rootpath": "^0.1.2",
-    "sqlite3": "^5.0.2"
+    "rxjs": "~6.6.0",
+    "sqlite3": "^5.0.2",
+    "tslib": "^2.0.0",
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1001.4",

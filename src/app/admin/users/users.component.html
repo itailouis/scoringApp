@@ -130,12 +130,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                    <tr *ngFor="let user of users">
+                      <td>{{user.username}}</td>
+                      <td>{{user.firstName}}</td>
+                      <td>{{user.lastName}}</td>
+                      <td>{{user.email}}</td>
+                      <td>{{user.role}}</td>
         
                     </tr>
                   

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HelperRequestService } from '../services/helper-request.service';
 
 @Component({
   selector: 'app-users',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  users=[];
 
-  constructor() { }
+  constructor(private dataService: HelperRequestService) { }
 
   ngOnInit(): void {
+    this.dataService.getAllUsers().subscribe((data: any[])=>{
+      console.log(data);
+      this.users=data;
+     
+    }) 
+
   }
 
 }

@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { HelperRequestService } from '../services/helper-request.service';
 
 @Component({
   selector: 'app-addscoring',
@@ -7,10 +10,52 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./addscoring.component.css']
 })
 export class AddscoringComponent implements OnInit {
-
-  constructor(private httpClient: HttpClient) { }
+  users=[];
+  formdata;
+  constructor(private router: Router,private route: ActivatedRoute,private dataService: HelperRequestService) { }
   ngOnInit(): void {
+    this.dataService.getAllUsers().subscribe((data: any[])=>{
+      console.log(data);
+      this.users=data;
+     
+    });
+    this.formdata = new FormGroup({
+      title: new FormControl("Voice call 4"),
+      user: new FormControl("Select User"),
+      file: new FormControl('', [Validators.required]),
+      fileSource: new FormControl('', [Validators.required])
     
+    });
+
+  }
+
+  onFileChange(event) {
+
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.formdata.patchValue({
+        fileSource: file
+      });
+    }
+  }
+
+  onClickSubmit(data) {
+   // data.append('file', this.formdata.get('fileSource').value);
+    console.log(data);
+
+    this.dataService.saveCall(data).subscribe(
+      {
+        next: data => {
+          console.log(data)
+          this.router.navigate([`../admin/users`]);
+        },
+        error: error => {
+          console.log(error)
+         // this.router.navigate([`../admin/users`]);
+        }
+      })
+  
+
   }
   
 

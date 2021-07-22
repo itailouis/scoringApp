@@ -7,7 +7,7 @@ const errorHandler = require('_helpers/error-handler');
 const jwt = require('jsonwebtoken');
 
 const config = require('config.json');
-
+const path = require('path')
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -43,6 +43,8 @@ app.use(function (req, res, next) {
 //api routes
 app.use('/users', require('./users/users.controller'));
 app.use('/calls', require('./calls/calls.controller'));
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 // global error handler
 app.use(errorHandler);
 

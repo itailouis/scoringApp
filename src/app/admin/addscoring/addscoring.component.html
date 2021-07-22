@@ -116,7 +116,7 @@
                 Add new Forms
               </header>
               <div class="panel-body">
-                <form role="form"  [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)">
+                <form role="form"  [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" enctype="multipart/form-data">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Title</label>
                     <input type="text" formControlName="title" class="form-control" id="exampleInputEmail1" placeholder="title">

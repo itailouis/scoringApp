@@ -31,7 +31,7 @@ function addnew(req, res, next) {
         .catch(err =>{
             console.log(err);
            return  next(err)
-        } );
+        });
 }
 
 function getAll(req, res, next) {

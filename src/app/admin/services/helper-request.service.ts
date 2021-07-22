@@ -9,6 +9,8 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class HelperRequestService {
+  
+  
 
   constructor(private http: HttpClient) { }
 
@@ -30,6 +32,10 @@ export class HelperRequestService {
     return this.http.get<any[]>(`${environment.apiUrl}/users/users`).pipe(catchError(this.handleError));
   }
 
+  getAllCall() {
+    return this.http.get<any[]>(`${environment.apiUrl}/calls/calls`).pipe(catchError(this.handleError));
+  }
+
 
   saveUser(data){
     const headers ={
@@ -43,5 +49,13 @@ export class HelperRequestService {
           'Content-Type': 'application/json'
       };
       return this.http.post(`${environment.apiUrl}/calls/add`,data,{headers}).pipe(catchError(this.handleError));
+  }
+
+  saveRating(data) {
+    const headers ={
+      'Content-Type': 'application/json'
+  };
+  return this.http.post(`${environment.apiUrl}/calls/rate`,data,{headers}).pipe(catchError(this.handleError));
+    
   }
 }

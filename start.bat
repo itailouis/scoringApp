@@ -1,1 +1,1 @@
-npm i && ng build --prod && node server.js && start chrome http://localhost:4000
+ node server.js && start chrome http://localhost:4000

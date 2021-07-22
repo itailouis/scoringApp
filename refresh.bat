@@ -1,0 +1,1 @@
+git pull && npm i && ng build --prod

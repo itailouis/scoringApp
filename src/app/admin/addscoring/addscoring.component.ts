@@ -12,6 +12,8 @@ import { HelperRequestService } from '../services/helper-request.service';
 export class AddscoringComponent implements OnInit {
   users=[];
   formdata;
+
+  error='';
   constructor(private router: Router,private route: ActivatedRoute,private dataService: HelperRequestService) { }
   ngOnInit(): void {
     this.dataService.getAllUsers().subscribe((data: any[])=>{
@@ -40,10 +42,13 @@ export class AddscoringComponent implements OnInit {
   }
 
   onClickSubmit(data) {
-   // data.append('file', this.formdata.get('fileSource').value);
-    console.log(data);
+    let formData = new FormData();
+    formData.append('file', this.formdata.get('fileSource').value);
+    formData.append('user', this.formdata.get('user').value);
+    formData.append('title', this.formdata.get('title').value);
+    console.log(this.formdata);
 
-    this.dataService.saveCall(data).subscribe(
+    this.dataService.saveCall(formData).subscribe(
       {
         next: data => {
           console.log(data)
@@ -51,6 +56,8 @@ export class AddscoringComponent implements OnInit {
         },
         error: error => {
           console.log(error)
+
+          this.error="something went wrong";
          // this.router.navigate([`../admin/users`]);
         }
       })

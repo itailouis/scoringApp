@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HelperRequestService } from 'src/app/admin/services/helper-request.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataService: HelperRequestService) { }
+  call:any;
+
+
 
   ngOnInit(): void {
+    this.dataService.getMyRate().subscribe((data: any[])=>{
+      console.log(data);
+      this.call=data;
+     
+    }) 
   }
 
 }

@@ -120,33 +120,34 @@
                 <thead>
                   <tr>
                     <th></th>
-                    <th>Name</th>
-                     <th>Calls</th>
-                    <th>Section</th>
+                     <th>Total Calls</th>
                     <th>Performance</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><img src="img/Germany.png" style="height:18px;
-                        margin-top:-2px;"></td>
-                    <td>Nyasha T</td>
-                    <td>2563</td>
-                    <td>OutBound calls</td>
+                    <td></td>
+                  
+                    <td>{{call.totalCalls}}</td>
+                  
                     <td>
+                      {{((call.callpoint/(call.totalCalls*100)) * 100).toFixed(2)}}%
                       <div class="progress thin">
                         <div class="progress-bar progress-bar-danger"
                           role="progressbar" aria-valuenow="73"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          73%">
+                          aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width':(((call.callpoint/(call.totalCalls * 100)) * 100).toFixed(2)) + '%'}"
+                          >
                         </div>
+                        
                         <div class="progress-bar progress-bar-warning"
+
+
                           role="progressbar" aria-valuenow="27"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          27%">
+                          aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width':((100-((call.callpoint/(call.totalCalls * 100)) * 100)).toFixed(2)) + '%'}">
                         </div>
-                      </div>
-                      <span class="sr-only">73%</span>
+                      </div> 
+                      <span class="sr-only">{{((call.callpoint/(call.totalCalls*100)) * 100).toFixed(2)}}%</span>
+                   
                     </td>
                   </tr>
                  

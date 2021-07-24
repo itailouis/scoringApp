@@ -9,7 +9,10 @@ router.post('/authenticate', authenticate);     // public route
 router.get('/', authorize(Role.Admin), getAll); // admin only
 router.get('/users', getAll);
 router.post('/add', addnew);
-router.get('/:id', authorize(), getById);       // all authenticated users
+router.get('/me', getById);
+router.get('/rates', getAllRates);
+router.get('/status/:action/:id', setStatus);
+
 module.exports = router;
 
 function authenticate(req, res, next) {
@@ -28,9 +31,9 @@ function addnew(req, res, next) {
             console.log(user);
             return user ? res.json(user) : res.status(400).json({ message: 'error when adding user' })
         })
-        .catch(err =>{
+        .catch(err => {
             console.log(err);
-           return  next(err)
+            return next(err)
         });
 }
 
@@ -41,15 +44,25 @@ function getAll(req, res, next) {
 }
 
 function getById(req, res, next) {
-    const currentUser = req.user;
-    const id = parseInt(req.params.id);
 
-    // only allow admins to access other user records
-    if (id !== currentUser.sub && currentUser.role !== Role.Admin) {
-        return res.status(401).json({ message: 'Unauthorized' });
-    }
+    userService.getById(req.body)
+        .then(user => res.json(user))
+        .catch(err => next(err));
+}
 
-    userService.getById(req.params.id)
-        .then(user => user ? res.json(user) : res.sendStatus(404))
+function getAllRates(req, res, next) {
+
+    userService.getAllRates()
+        .then(user => res.json(user))
+        .catch(err => next(err));
+}
+
+function setStatus(req, res, next) {
+    userService.setUserStatus(req.params.action, req.params.id)
+        .then(user => {
+        
+            return res.json(user)
+
+        })
         .catch(err => next(err));
 }

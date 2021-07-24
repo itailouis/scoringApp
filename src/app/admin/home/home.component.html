@@ -8,7 +8,7 @@
     </div>
 
     <!--logo start-->
-    <a href="index.html" class="logo">Blantina <span class="lite">ZOL</span></a>
+    <a href="index.html" class="logo">ZOL<span class="lite">CSR</span></a>
     <!--logo end-->
 
     <div class="nav search-row" id="top_menu">
@@ -135,181 +135,32 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><img src="img/Germany.png" style="height:18px;
-                        margin-top:-2px;"></td>
-                    <td>Nyasha T</td>
-                    <td>2563</td>
+                  <tr *ngFor="let call of data">
+                    <td></td>
+                    <td>{{call.firstName}} {{call.lastName}}</td>
+                    <td>{{call.totalCalls}}</td>
                     <td>OutBound calls</td>
                     <td>
+                      {{((call.callpoint/(call.totalCalls*100)) * 100).toFixed(2)}}%
                       <div class="progress thin">
                         <div class="progress-bar progress-bar-danger"
                           role="progressbar" aria-valuenow="73"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          73%">
+                          aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width':((call.callpoint/(call.totalCalls*100)) * 100).toFixed(2) + '%'}"
+                          
+                          >
                         </div>
+                        
                         <div class="progress-bar progress-bar-warning"
+
+
                           role="progressbar" aria-valuenow="27"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          27%">
+                          aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width':(100-((call.callpoint/(call.totalCalls*100)) * 100).toFixed(2)) + '%'}">
                         </div>
                       </div>
-                      <span class="sr-only">73%</span>
+                      <span class="sr-only">{{((call.callpoint/(call.totalCalls*100)) * 100).toFixed(2)}}%</span>
                     </td>
                   </tr>
-                  <tr>
-                    <td><img src="img/India.png" style="height:18px;
-                        margin-top:-2px;"></td>
-                    <td>Sadra S</td>
-                    <td>3652</td>
-                    <td>InBound calls</td>
-                    <td>
-                      <div class="progress thin">
-                        <div class="progress-bar progress-bar-danger"
-                          role="progressbar" aria-valuenow="57"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          57%">
-                        </div>
-                        <div class="progress-bar progress-bar-warning"
-                          role="progressbar" aria-valuenow="43"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          43%">
-                        </div>
-                      </div>
-                      <span class="sr-only">57%</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><img src="img/Spain.png" style="height:18px;
-                        margin-top:-2px;"></td>
-                    <td>Vongai Z</td>
-                    <td>562</td>
-                    <td>OutBound calls</td>
-                    <td>
-                      <div class="progress thin">
-                        <div class="progress-bar progress-bar-danger"
-                          role="progressbar" aria-valuenow="93"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          93%">
-                        </div>
-                        <div class="progress-bar progress-bar-warning"
-                          role="progressbar" aria-valuenow="7" aria-valuemin="0"
-                          aria-valuemax="100" style="width: 7%">
-                        </div>
-                      </div>
-                      <span class="sr-only">93%</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><img src="img/India.png" style="height:18px;
-                        margin-top:-2px;"></td>
-                    <td>Wesly M</td>
-                    <td>1258</td>
-                    <td>InBound calls</td>
-                    <td>
-                      <div class="progress thin">
-                        <div class="progress-bar progress-bar-danger"
-                          role="progressbar" aria-valuenow="20"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          20%">
-                        </div>
-                        <div class="progress-bar progress-bar-warning"
-                          role="progressbar" aria-valuenow="80"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          80%">
-                        </div>
-                      </div>
-                      <span class="sr-only">20%</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><img src="img/Spain.png" style="height:18px;
-                        margin-top:-2px;"></td>
-                    <td>Brain D</td>
-                    <td>4856</td>
-                    <td>OutBound calls</td>
-                    <td>
-                      <div class="progress thin">
-                        <div class="progress-bar progress-bar-danger"
-                          role="progressbar" aria-valuenow="20"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          20%">
-                        </div>
-                        <div class="progress-bar progress-bar-warning"
-                          role="progressbar" aria-valuenow="80"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          80%">
-                        </div>
-                      </div>
-                      <span class="sr-only">20%</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><img src="img/Germany.png" style="height:18px;
-                        margin-top:-2px;"></td>
-                    <td>Alpha W</td>
-                    <td>265</td>
-                    <td>OutBound calls</td>
-                    <td>
-                      <div class="progress thin">
-                        <div class="progress-bar progress-bar-danger"
-                          role="progressbar" aria-valuenow="20"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          20%">
-                        </div>
-                        <div class="progress-bar progress-bar-warning"
-                          role="progressbar" aria-valuenow="80"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          80%">
-                        </div>
-                      </div>
-                      <span class="sr-only">20%</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><img src="img/Germany.png" style="height:18px;
-                        margin-top:-2px;"></td>
-                    <td>Costa</td>
-                    <td>265</td>
-                    <td>InBound calls</td>
-                    <td>
-                      <div class="progress thin">
-                        <div class="progress-bar progress-bar-danger"
-                          role="progressbar" aria-valuenow="20"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          20%">
-                        </div>
-                        <div class="progress-bar progress-bar-warning"
-                          role="progressbar" aria-valuenow="80"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          80%">
-                        </div>
-                      </div>
-                      <span class="sr-only">20%</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><img src="img/Germany.png" style="height:18px;
-                        margin-top:-2px;"></td>
-                    <td>Frances</td>
-                    <td>265</td>
-                    <td>OutBound calls</td>
-                    <td>
-                      <div class="progress thin">
-                        <div class="progress-bar progress-bar-danger"
-                          role="progressbar" aria-valuenow="20"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          20%">
-                        </div>
-                        <div class="progress-bar progress-bar-warning"
-                          role="progressbar" aria-valuenow="80"
-                          aria-valuemin="0" aria-valuemax="100" style="width:
-                          80%">
-                        </div>
-                      </div>
-                      <span class="sr-only">20%</span>
-                    </td>
-                  </tr>
+                 
                 </tbody>
               </table>
             </div>

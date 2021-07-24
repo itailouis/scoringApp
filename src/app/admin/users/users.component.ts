@@ -20,4 +20,18 @@ export class UsersComponent implements OnInit {
 
   }
 
+  userAction(id:number,action:string){
+    this.dataService.setUserStatus(id,action).subscribe((data: any)=>{
+      console.log(data)
+
+      this.dataService.getAllUsers().subscribe((data: any[])=>{
+        console.log(data);
+        this.users=data;
+       
+      }) 
+     
+    }) 
+
+  }
+
 }

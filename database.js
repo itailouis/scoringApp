@@ -19,6 +19,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             lastName text,
             password text,
             role text,
+            status text DEFAULT active,
             CONSTRAINT username_unique UNIQUE (username)			
             CONSTRAINT email_unique UNIQUE (email)
             )`, (err) => {
@@ -26,9 +27,9 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 // Table already created
             } else {
                 // Table just created, creating some rows
-                var insert = 'INSERT INTO user (username, email,firstName ,lastName, password,role) VALUES (?,?,?,?,?,?)'
-                db.run(insert, ["admin", "admin@example.com", "admin", "admin", md5("admin123456"), "admin"])
-                db.run(insert, ["user", "user@example.com", "user", "user", md5("user123456"), "user"])
+                var insert = 'INSERT INTO user (username, email,firstName ,lastName, password,role,status) VALUES (?,?,?,?,?,?,?)'
+                db.run(insert, ["admin", "admin@example.com", "admin", "admin", md5("admin123456"), "admin","active"])
+                db.run(insert, ["user", "user@example.com", "user", "user", md5("user123456"), "user",,"active"])
             }
         })
 

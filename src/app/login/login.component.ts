@@ -56,12 +56,16 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-
+          console.log(data)
           if (data.role == "admin") {
             this.router.navigate(['admin']);
           } else if (data.role == "user") {
             this.router.navigate(['agent']);
+          } else {
+            this.error = data;
           }
+          this.loading = false;
+
         },
         error => {
           this.error = error;

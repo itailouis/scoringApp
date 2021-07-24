@@ -44,7 +44,7 @@ async function rateCall({point,voicecallid,userId}){
 }
 
 async function getAllCalls() {
-    var sql = "select voicecalls.id, voicecalls.filepath ,firstName from voicecalls join user on user.id = voicecalls.user "
+    var sql = "select voicecalls.id, voicecalls.filepath ,firstName from voicecalls join user on user.id = voicecalls.user"
     var params = []
     var users = []
 

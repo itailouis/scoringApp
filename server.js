@@ -10,8 +10,11 @@ const config = require('config.json');
 const path = require('path')
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(cors());
 app.use(function (req, res, next) {
 
@@ -26,10 +29,10 @@ app.use(function (req, res, next) {
     
     try {
       decoded = jwt.verify(authorization, config.secret);
-      console.error(decoded);
+      ////console.error(decoded);
       var userId = decoded.sub;
       req.body.userId = userId;
-      console.error(userId);
+      //console.error(userId);
     } catch (e) {
       console.error(e)
     }finally{
@@ -43,14 +46,13 @@ app.use(function (req, res, next) {
 //api routes
 app.use('/users', require('./users/users.controller'));
 app.use('/calls', require('./calls/calls.controller'));
-
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+
 // global error handler
 app.use(errorHandler);
 
 
 app.use(express.static('./dist/scoringApp'));
-
 app.get('/*', (req, res) =>
   res.sendFile('index.html', { root: 'dist/scoringApp/' }),
 );

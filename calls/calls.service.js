@@ -2,7 +2,9 @@ var db = require("../database")
 
 module.exports = {
    uploadsCall,
-   rateCall,getAllCalls
+   rateCall,
+   getAllCalls,
+   getCallId
 };
 
 async function uploadsCall({title, filepath, user}){
@@ -24,12 +26,12 @@ async function uploadsCall({title, filepath, user}){
     });
 }
 
-async function rateCall({point,voicecallid,userId}){
+async function rateCall({point,voicecallid,user}){
    
     return new Promise((res, rej) => {
        
         var sql = 'INSERT INTO scoreLog (point,voicecallid,user) VALUES (?,?,?)'
-        var params = [point,voicecallid,userId]
+        var params = [point,voicecallid,user]
         db.run(sql, params, function(err, result) {
             if (err) {
                 return rej(err);
@@ -62,6 +64,26 @@ async function getAllCalls() {
         });
 
 
+    });
+
+}
+
+async function getCallId(userId) {
+
+    return new Promise((res, rej) => {
+
+        var sql = 'select * from voicecalls where id= ? ORDER by id DESC   '
+        var params = [userId]
+        db.each(sql, params, function (err, result) {
+            if (err) {
+                return rej(err);
+            }
+
+            console.error(result)
+            return res(
+                result
+            );
+        });
     });
 
 }

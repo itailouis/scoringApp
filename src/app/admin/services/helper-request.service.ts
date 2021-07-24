@@ -12,6 +12,7 @@ export class HelperRequestService {
   
   
   
+  
   constructor(private http: HttpClient) { }
 
   handleError(error: HttpErrorResponse) {
@@ -64,6 +65,10 @@ export class HelperRequestService {
 
   getMyRate() {
     return this.http.get<any>(`${environment.apiUrl}/users/me`).pipe(catchError(this.handleError));
+  }
+
+  getCall(voicecallid: number) {
+    return this.http.get<any>(`${environment.apiUrl}/calls/call/${voicecallid}`).pipe(catchError(this.handleError));
   }
 
   getAllRate() {

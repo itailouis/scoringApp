@@ -33,12 +33,20 @@ export class RateuserComponent implements OnInit {
   oneQuestionSevntTotal: number = 0;
 
   form;
+  callData:any;
   constructor(private router: Router, private route: ActivatedRoute, private dataService: HelperRequestService) {
 
   }
 
   ngOnInit(): void {
     this.voicecallid = this.route.snapshot.paramMap.get('voicecallid');
+    this.dataService.getCall(parseInt(this.voicecallid)).subscribe((data: any[])=>{
+      console.log(data);
+      this.callData=data;
+     
+    }) 
+
+
     this.grouptotal = 0;
     this.oneQuestionOneTotal = 0;
     this.oneQuestionTwoTotal = 0;
@@ -193,7 +201,7 @@ export class RateuserComponent implements OnInit {
     var rating = ((this.grouptotal / 3) + (this.groupTwototal / 3) + (this.groupThreetotal / 3)).toFixed(2);
 
     this.dataService.saveRating({
-      point: rating, voicecallid: parseInt(this.voicecallid)
+      point: rating, voicecallid: parseInt(this.voicecallid), user: this.callData.user
 
     }).subscribe(
       {

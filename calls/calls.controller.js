@@ -12,6 +12,7 @@ router.post('/add',multipartMiddleware, addnewCall);
 
 router.post('/rate', addCallRate); 
 router.get('/calls', addAllCall); 
+router.get('/call/:id', getCall); 
 
 module.exports = router;
 
@@ -56,4 +57,11 @@ function addAllCall(req, res, next) {
             console.log(err);
            return  next(err)
         });
+}
+
+function getCall(req, res, next) {
+
+    callService.getCallId(req.params.id)
+        .then(user => res.json(user))
+        .catch(err => next(err));
 }

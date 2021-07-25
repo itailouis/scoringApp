@@ -69,16 +69,13 @@ async function getAllCalls() {
 }
 
 async function getCallId(userId) {
-
     return new Promise((res, rej) => {
-
         var sql = 'select * from voicecalls where id= ? ORDER by id DESC   '
         var params = [userId]
         db.each(sql, params, function (err, result) {
             if (err) {
                 return rej(err);
             }
-
             console.error(result)
             return res(
                 result

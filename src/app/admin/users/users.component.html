@@ -8,7 +8,7 @@
       </div>
   
       <!--logo start-->
-      <a href="index.html" class="logo">ZOL<span class="lite">CSR</span></a>
+      <a href="index.html" class="logo">CSR<span class="lite">CSR</span></a>
       <!--logo end-->
   
       <div class="nav search-row" id="top_menu">
@@ -124,8 +124,8 @@
                       
                       <th>Username</th>
                       <th>Emails</th>
-                       <th>First Name</th>
-                      <th>Last name</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
                       <th>Role</th>
                       <th>Action</th>
                     </tr>
@@ -133,9 +133,9 @@
                   <tbody>
                     <tr *ngFor="let user of users">
                       <td>{{user.username}}</td>
-                      <td>{{user.firstName}}</td>
-                      <td>{{user.lastName}}</td>
                       <td>{{user.email}}</td>
+                      <td>{{user.firstName}}</td>
+                      <td>{{user.lastName}}</td>    
                       <td>{{user.role}}</td>
                       <td><button class="{{user.status==='active'?'btn btn-danger': 'btn btn-primary'}}" (click)="userAction(user.id,user.status)" >{{user.status==='active'?'Deactivate':'Activate'}}</button></td>
                     </tr>
